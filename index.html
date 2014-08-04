@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Bingo Night!</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Play the Marginalization Bingo while watching action movies together">
+</head>
+<body>
+<header>
+    <h1>Movie Bingo</h1>    
+    <h2>Open your eyes to what movies actually say about the world</h2>
+</header>
+<p>Movies portray the world as the movie creators see: with their implicit biases and discrimination. These biases are so casual you don't even notice when only the women seem to be always screaming at the first sign of danger, the non-white characters don't seem to last till the end of the movie, or how the protagonist is always a white male.</p>
+    <p>With Movie Bingo, you can watch out for these subtle assumptions and perpetuation of a predominantly white male view of the world and report on how this movie fares with this view. Each month we will watch a different movie together and mark all instances of such biases collectively. We can then view how the movie fared across a large cross-section of population and notice which demographic was cognizant of what bias.</p>
+    <h2>How does this work?</h2>
+    <ul>
+        <li>Sign up to watch the movie.</li>
+    </ul>
+<div class=movie>
+    <h1>DEBUT MOVIE: Jurassic Park</h1>
+    <h2>Aug 11, 2014, Sunday 7pm PST</h2>
+    <h3><a href="http://www.amazon.com/Jurassic-Park-Sam-Neill/dp/B00C1BTWV4">Watch online</a></h3>
+    .<p>Think dinosaurs must mean progressive behavior? Think again! What are the most egregious biases you can find? Watch with us and lets all engage in collective head shaking and finger pointing.</p>    
+</div>
+    <div class="signup" id="js-signupContainer">
+        <div id="js-signupThankyou"></div>
+        <form id="signup" method="post" action="/signup">
+            <h2>Signup</h2>
+            <p>Sign up below, and we will send you a reminder when 6 hours before the Movie Bingo will being. If you just want to watch the fun unfold, follow along on Twitter <a href="#">#moviebingo</a></p>
+            <p>
+                <input type="email" id="js-email" name="email">
+            </p>        
+            <p><input type=submit id="js-signupSubmit" value="Sign up"></p>
+            <p><small>You will receive a reminder on the day of the viewing, and one report once the viewing is complete. That's it.</small></p>
+        </form>
+    </div>    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#js-signupSubmit').click(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $.ajax({
+                        url: '/signup',
+                        type: 'POST',
+                        data: { email: $('#js-email').val() }
+                    })
+                    .done(function(html) {
+                        $('#js-signupThankyou').append(html);
+                    });
+        
+            });
+        });
+    </script>
+</body>
+</html>
